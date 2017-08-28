@@ -5,5 +5,5 @@ package com.action.amp.ampalexa.global;
  */
 
 public class Constants {
-    public static final String PRODUCT_ID = "interactive_conversation";
+    public static final String PRODUCT_ID = "sbm61012_moodlight";
 }

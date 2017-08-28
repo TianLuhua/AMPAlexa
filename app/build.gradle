@@ -1,5 +1,19 @@
 apply plugin: 'com.android.application'
 
+//api_key.txt从Zmazon官网获取
+String apiKeyLocation = "./src/main/assets/api_key.txt"
+//ca认证文件
+//    String caCertLocation = "./src/main/res/raw/ca.crt"
+
+task checkForRequiredFiles << {
+    if (!file(apiKeyLocation).exists()) {
+        throw new FileNotFoundException("The API Key file does not exist. Please make sure " + apiKeyLocation + " has been created and populated with the proper values from the Security Profile you created.")
+    }
+
+//        if (!file(caCertLocation).exists()) {
+//            throw new FileNotFoundException("The Certificate Authority public certificate file does not exist. Please make sure " + caCertLocation + " exists and contains the public certificate created during setup.")
+//        }
+}
 
 
 
@@ -17,6 +31,14 @@ android {
         multiDexEnabled true;
     }
 
+    signingConfigs {
+        releaseConfig {
+            storeFile file('keystore.jks')
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storePassword 'android'
+        }
+    }
 
     buildTypes {
         debug{
@@ -24,13 +46,17 @@ android {
             minifyEnabled false
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.releaseConfig
         }
         release {
             minifyEnabled false
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            signingConfig signingConfigs.releaseConfig
         }
     }
+
+
 
     packagingOptions {
         exclude 'META-INF/LICENSE.txt'
