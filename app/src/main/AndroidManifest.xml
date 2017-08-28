@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.willblaschko.android.alexavoicelibrary">
+    package="com.action.amp.ampalexa">
 
     <uses-feature
         android:name="android.software.leanback"
@@ -10,9 +10,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:name=".AlexaApplication">
+        android:name="com.action.amp.ampalexa.AlexaApplication">
 
-        <activity android:name=".MainActivity"
+        <activity android:name="com.action.amp.ampalexa.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".LoginWebViewActivity">
+        <activity android:name="com.action.amp.ampalexa.LoginWebViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT"/>

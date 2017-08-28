@@ -1,18 +1,14 @@
 apply plugin: 'com.android.application'
 
 
-if (file('signing.gradle').exists()) {
-    apply from: 'signing.gradle'
-}else{
-    throw new TaskExecutionException(null, new Exception("Unable to find signing.gradle, please replace Android buildTypes > signing configs with your own configuration."));
-}
+
 
 android {
     compileSdkVersion 24
     buildToolsVersion '25.0.0'
 
     defaultConfig {
-        applicationId "com.willblaschko.android.alexavoicelibrary"
+        applicationId "com.action.amp.ampalexa"
         minSdkVersion 21
 
         targetSdkVersion 24
@@ -28,13 +24,11 @@ android {
             minifyEnabled false
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.releaseConfig
         }
         release {
             minifyEnabled false
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.releaseConfig
         }
     }
 
