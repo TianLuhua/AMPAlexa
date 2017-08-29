@@ -104,11 +104,11 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseList
         audioPlayer.addCallback(alexaAudioPlayerCallback);
 
         //open our downchannel
-        //alexaManager.sendOpenDownchannelDirective(requestCallback);
+//        alexaManager.sendOpenDownchannelDirective(requestCallback);
 
 
         //synchronize our device
-        //alexaManager.sendSynchronizeStateEvent(requestCallback);
+        alexaManager.sendSynchronizeStateEvent(requestCallback);
     }
 
     //Our callback that deals with removing played items in our media player and then checking to see if more items exist
@@ -202,7 +202,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseList
      */
     private void sendPlaybackFinishedEvent(AvsItem item) {
         if (item != null) {
-            alexaManager.sendPlaybackFinishedEvent(item, null);
+            alexaManager.sendPlaybackFinishedEvent(item, requestCallback);
             Log.i(TAG, "Sending PlaybackFinishedEvent");
         }
     }
@@ -279,7 +279,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseList
     /**
      * Check our current queue of items, and if we have more to parse (once we've reached a play or listen callback) then proceed to the
      * next item in our list.
-     * <p/>
+     * <p>
      * We're handling the AvsReplaceAllItem in handleResponse() because it needs to clear everything currently in the queue, before
      * the new items are added to the list, it should have no function here.
      */
